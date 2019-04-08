@@ -1,0 +1,100 @@
+static int n;
+        static Mahasiswa[] mhs;
+        struct Mahasiswa
+        {
+            public string nama, nim, nh;
+            public int UTS, tugas, uas;
+            public double na;
+            public void input()
+            {
+                Console.Write("Masukan jumlah mahasiswa:");
+                n = int.Parse(Console.ReadLine());
+                mhs = new Mahasiswa[n];
+                for (int i = 0; i < n; i++)
+                {
+                    Console.Write("Masukan Nim Mahasiswa: ");
+                    mhs[i].nim = Console.ReadLine();
+                    Console.Write("Masukan Nama Mahasiswa: ");
+                    mhs[i].nama = Console.ReadLine();
+                    Console.Write("Masukan UTS Mahasiswa: ");
+                    mhs[i].UTS = int.Parse(Console.ReadLine());
+                    Console.Write("Masukan Tugas Mahasiswa: ");
+                    mhs[i].tugas = int.Parse(Console.ReadLine());
+                    Console.Write("Masukan uas Mahasiswa: ");
+                    mhs[i].uas = int.Parse(Console.ReadLine());
+                    mhs[i].na = 0.3 * mhs[i].UTS + 0.3 * mhs[i].tugas + 0.4 * mhs[i].uas;
+                    if (mhs[i].na > 90 && mhs[i].na <= 100)
+                    {
+                        mhs[i].nh = "A";
+                    }
+                    else if (mhs[i].na > 80 && mhs[i].na <= 90)
+                    {
+                        mhs[i].nh = "B+";
+                    }
+                    else if (mhs[i].na > 70 && mhs[i].na <= 80)
+                    {
+                        mhs[i].nh = "B";
+                    }
+                    else if (mhs[i].na > 60 && mhs[i].na <= 70)
+                    {
+                        mhs[i].nh = "C";
+                    }
+                    else if (mhs[i].na > 50 && mhs[i].na <= 60)
+                    {
+                        mhs[i].nh = "D";
+                    }
+                    else if (mhs[i].na <= 50)
+                    {
+                        mhs[i].nh = "E";
+                    }
+                    else
+                    {
+                        mhs[i].nh = "-";
+                    }
+                }
+            }
+            public void tampil()
+            {
+                Console.Clear();
+                Console.WriteLine("NIM".PadRight(10) + "Nama".PadRight(30) + "UTS".PadRight(10) + "Tugas".PadRight(10) + "UAS".PadRight(10) + "Nilai Akhir".PadRight(12) + "NH");
+                Console.WriteLine(new string('=', 50));
+                for (int i = 0; i < n; i++)
+                {
+                    Console.WriteLine(mhs[i].nim.PadRight(10) + mhs[i].nama.PadRight(30) + mhs[i].UTS.ToString().PadRight(10) + mhs[i].tugas.ToString().PadRight(10) + mhs[i].uas.ToString().PadRight(10) + mhs[i].na.ToString("0.00").PadRight(12) + mhs[i].nh);
+                }
+            }
+        }
+        static void Main(string[] args)
+        {
+            int kode;
+            Mahasiswa mhs = new Mahasiswa();
+            ulang:
+            Console.Clear();
+            Console.WriteLine("1.input");
+            Console.WriteLine("2.tampil");
+            Console.WriteLine("3.keluar");
+            Console.WriteLine(new string('=', 40));
+            Console.Write("Masukan kode: ");
+            kode = int.Parse(Console.ReadLine());
+            if (kode == 1)
+            {
+                Console.Clear();
+                mhs.input();
+            }
+            else if (kode == 2)
+            {
+                mhs.tampil();
+            }
+            else if (kode == 3)
+            {
+                System.Environment.Exit(0);
+            }
+            else
+            {
+                Console.Write("kode tidak valid");
+            }
+
+            Console.ReadLine();
+            goto ulang;
+        }
+    }
